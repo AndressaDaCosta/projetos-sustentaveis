@@ -18,7 +18,7 @@ public class AuthController {
     private PasswordEncoder encoder;
 
     @PostMapping
-    public ResponseEntity<?> login(@RequestBody LoginRequest login) {
+    public ResponseEntity<String> login(@RequestBody LoginRequest login) {
         var usuario = repository.findByUsername(login.username);
         if (usuario.isPresent() && encoder.matches(login.senha, usuario.get().getSenha())) {
             return ResponseEntity.ok("Login efetuado com sucesso!");
